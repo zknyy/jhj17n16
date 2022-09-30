@@ -43,7 +43,7 @@ services:
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
       - SPRING_SECURITY_USER_PASSWORD=admin
       # The token should have the same value than the one declared in you Spring configuration under the jhipster.security.authentication.jwt.base64-secret configuration's entry
-      - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET=ZjcyZDVmMzQ3NzI0YTE4ZGRkZmRiMDc4MmZlNzMzZTBjNWYxMjRlODg1NWJlMzA1ZDUyOTY4M2Q5NGUxNzBkYWFmYjE4YWJhMWRjNzQxNDgyMzA2MTQxMDg5NDllNWE5NWMyMjJlNmVhMDhjNGUwNGMxNDNjMzczZTNhYWY2OTU=
+      - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET=YWNjNzhmNjE2OTEwYjU2ZDlmNjQ4ZmMzYjk2ZmVlMTBjNjNiYzNjODA0NWI1MjA5N2I2ODJlMTEyYjNjNWNkMWU1NjZmZDZhNjFlY2JiYTllNzIwNjZmYTkwYjIwYTU4MzEzZTA2NjhmZDc4ZGRhNzYxOTE1YWNkYjEwNmYwZmE=
       - SPRING_CLOUD_DISCOVERY_CLIENT_SIMPLE_INSTANCES_JHJ17N16_0_URI=http://host.docker.internal:8080
       - LOGGING_FILE_NAME=/tmp/jhipster-control-center.log
     # If you want to expose these ports outside your dev PC,
