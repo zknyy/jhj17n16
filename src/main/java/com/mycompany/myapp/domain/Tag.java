@@ -34,7 +34,7 @@ public class Tag implements Serializable {
     @ManyToMany(mappedBy = "tags")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "blog", "tags" }, allowSetters = true)
-    private Set<Entry> blogs = new HashSet<>();
+    private Set<Post> blogs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -64,34 +64,34 @@ public class Tag implements Serializable {
         this.name = name;
     }
 
-    public Set<Entry> getBlogs() {
+    public Set<Post> getBlogs() {
         return this.blogs;
     }
 
-    public void setBlogs(Set<Entry> entries) {
+    public void setBlogs(Set<Post> posts) {
         if (this.blogs != null) {
             this.blogs.forEach(i -> i.removeTag(this));
         }
-        if (entries != null) {
-            entries.forEach(i -> i.addTag(this));
+        if (posts != null) {
+            posts.forEach(i -> i.addTag(this));
         }
-        this.blogs = entries;
+        this.blogs = posts;
     }
 
-    public Tag blogs(Set<Entry> entries) {
-        this.setBlogs(entries);
+    public Tag blogs(Set<Post> posts) {
+        this.setBlogs(posts);
         return this;
     }
 
-    public Tag addBlog(Entry entry) {
-        this.blogs.add(entry);
-        entry.getTags().add(this);
+    public Tag addBlog(Post post) {
+        this.blogs.add(post);
+        post.getTags().add(this);
         return this;
     }
 
-    public Tag removeBlog(Entry entry) {
-        this.blogs.remove(entry);
-        entry.getTags().remove(this);
+    public Tag removeBlog(Post post) {
+        this.blogs.remove(post);
+        post.getTags().remove(this);
         return this;
     }
 

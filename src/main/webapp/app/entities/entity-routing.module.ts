@@ -10,9 +10,9 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule),
       },
       {
-        path: 'entry',
-        data: { pageTitle: 'jhj17N16App.entry.home.title' },
-        loadChildren: () => import('./entry/entry.module').then(m => m.EntryModule),
+        path: 'post',
+        data: { pageTitle: 'jhj17N16App.post.home.title' },
+        loadChildren: () => import('./post/post.module').then(m => m.PostModule),
       },
       {
         path: 'tag',

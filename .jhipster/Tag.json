@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20221013163601",
+  "changelogDate": "20221031175126",
   "dto": "no",
   "embedded": false,
   "entityTableName": "tag",
@@ -19,7 +19,7 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "entry",
+      "otherEntityName": "post",
       "otherEntityRelationshipName": "tag",
       "ownerSide": false,
       "relationshipName": "blog",

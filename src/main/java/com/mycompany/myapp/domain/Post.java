@@ -9,15 +9,16 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 
 /**
- * A Entry.
+ * A Post.
  */
 @Entity
-@Table(name = "entry")
+@Table(name = "post")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Entry implements Serializable {
+public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +32,8 @@ public class Entry implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @NotNull
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "content", nullable = false)
     private String content;
 
@@ -44,7 +46,7 @@ public class Entry implements Serializable {
     private Blog blog;
 
     @ManyToMany
-    @JoinTable(name = "rel_entry__tag", joinColumns = @JoinColumn(name = "entry_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @JoinTable(name = "rel_post__tag", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "blogs" }, allowSetters = true)
     private Set<Tag> tags = new HashSet<>();
@@ -55,7 +57,7 @@ public class Entry implements Serializable {
         return this.id;
     }
 
-    public Entry id(Long id) {
+    public Post id(Long id) {
         this.setId(id);
         return this;
     }
@@ -68,7 +70,7 @@ public class Entry implements Serializable {
         return this.title;
     }
 
-    public Entry title(String title) {
+    public Post title(String title) {
         this.setTitle(title);
         return this;
     }
@@ -81,7 +83,7 @@ public class Entry implements Serializable {
         return this.content;
     }
 
-    public Entry content(String content) {
+    public Post content(String content) {
         this.setContent(content);
         return this;
     }
@@ -94,7 +96,7 @@ public class Entry implements Serializable {
         return this.date;
     }
 
-    public Entry date(Instant date) {
+    public Post date(Instant date) {
         this.setDate(date);
         return this;
     }
@@ -111,7 +113,7 @@ public class Entry implements Serializable {
         this.blog = blog;
     }
 
-    public Entry blog(Blog blog) {
+    public Post blog(Blog blog) {
         this.setBlog(blog);
         return this;
     }
@@ -124,18 +126,18 @@ public class Entry implements Serializable {
         this.tags = tags;
     }
 
-    public Entry tags(Set<Tag> tags) {
+    public Post tags(Set<Tag> tags) {
         this.setTags(tags);
         return this;
     }
 
-    public Entry addTag(Tag tag) {
+    public Post addTag(Tag tag) {
         this.tags.add(tag);
         tag.getBlogs().add(this);
         return this;
     }
 
-    public Entry removeTag(Tag tag) {
+    public Post removeTag(Tag tag) {
         this.tags.remove(tag);
         tag.getBlogs().remove(this);
         return this;
@@ -148,10 +150,10 @@ public class Entry implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Entry)) {
+        if (!(o instanceof Post)) {
             return false;
         }
-        return id != null && id.equals(((Entry) o).id);
+        return id != null && id.equals(((Post) o).id);
     }
 
     @Override
@@ -163,7 +165,7 @@ public class Entry implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Entry{" +
+        return "Post{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", content='" + getContent() + "'" +

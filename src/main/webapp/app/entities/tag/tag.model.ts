@@ -1,9 +1,9 @@
-import { IEntry } from 'app/entities/entry/entry.model';
+import { IPost } from 'app/entities/post/post.model';
 
 export interface ITag {
   id: number;
   name?: string | null;
-  blogs?: Pick<IEntry, 'id'>[] | null;
+  blogs?: Pick<IPost, 'id'>[] | null;
 }
 
 export type NewTag = Omit<ITag, 'id'> & { id: null };
