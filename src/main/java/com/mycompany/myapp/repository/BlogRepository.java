@@ -29,6 +29,9 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
         return this.findAllWithToOneRelationships(pageable);
     }
 
+    @Query("select distinct blog from Blog blog left join fetch blog.user where blog.user.login = ?#{principal.username}")
+    List<Blog> findByUserIsCurrentUserWithEagerRelationships();
+
     @Query(
         value = "select distinct blog from Blog blog left join fetch blog.user",
         countQuery = "select count(distinct blog) from Blog blog"

@@ -150,9 +150,11 @@ public class BlogResource {
     public List<Blog> getAllBlogs(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Blogs");
         if (eagerload) {
-            return blogRepository.findAllWithEagerRelationships();
+            //            return blogRepository.findAllWithEagerRelationships();
+            return blogRepository.findByUserIsCurrentUserWithEagerRelationships();
         } else {
-            return blogRepository.findAll();
+            //            return blogRepository.findAll();
+            return blogRepository.findByUserIsCurrentUser();
         }
     }
 
